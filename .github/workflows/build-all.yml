@@ -1,4 +1,4 @@
-name: Build Tauri App
+name: Build Tauri App All
 
 # 触发方式：
 # 1. 手动触发（在 GitHub 仓库的 Actions 页面点 "Run workflow"）
@@ -17,7 +17,6 @@ jobs:
         include:
           - platform: windows-latest
           - platform: macos-latest
-          - platform: ubuntu-latest
 
     runs-on: ${{ matrix.platform }}
 
@@ -62,11 +61,3 @@ jobs:
           name: timetable-macos
           path: src-tauri/target/release/bundle/dmg/*.dmg
 
-      - name: Upload artifacts (Linux)
-        if: matrix.platform == 'ubuntu-latest'
-        uses: actions/upload-artifact@v4
-        with:
-          name: timetable-linux
-          path: |
-            src-tauri/target/release/bundle/deb/*.deb
-            src-tauri/target/release/bundle/appimage/*.AppImage
